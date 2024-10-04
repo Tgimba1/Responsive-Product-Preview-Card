@@ -12,22 +12,22 @@
   
   <title>Frontend Mentor | Product preview card component</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    *{
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     /* Primary */
-    :root{
+    :root {
       --dark-cyan: hsl(158, 36%, 37%);
-      --dark-cyan1: hsl(158, 36%, 37%,0.9);
+      --dark-cyan1: hsl(158, 36%, 37%, 0.9);
       --cream: hsl(30, 38%, 92%);
     }
 
     /* Neutral Colors */
-
-    :root{
+    :root {
       --very-dark-blue: hsl(212, 21%, 14%);
       --dark-grayish-blue: hsl(228, 12%, 48%);
       --white: hsl(0, 0%, 100%);
@@ -43,43 +43,57 @@
       src: url(./fonts/Fraunces/Fraunces-VariableFont_SOFT\,WONK\,opsz\,wght.ttf);
     }
 
-    body{
+    body {
       background-color: var(--cream);
     }
 
-    #main-container{
+    #main-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      place-items: center;
-      flex-direction: row;
+      height: 100vh;
     }
 
-    #container{
+    #container {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       width: 480px;
-      height: 100vh;
     }
 
-    #product-img img{
-      width: 220px;
+    #holder {
+      display: flex;
+      height: 60vh;
+      width: 100%;
+      align-items: center; /* Vertically centers the content */
+      justify-content: center; /* Horizontally centers the content */
+      background-color: var(--white);
+      border-radius: 10px;
+    }
+
+    #product-img, #product-des {
+      flex: 1; /* Makes it take equal width for both */
+      height: 100%; /* Ensures both divs occupy full height of parent */
+    }
+
+    #product-img img {
+      width: 100%;
       height: 100%;
+      object-fit: cover;
       border-radius: 10px 0 0 10px;
     }
 
-    #product-des{
+    #product-des {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1.5em;
       background-color: var(--white);
-      height: 100%;
-      margin-top: auto;
-      margin-bottom: auto;
-      align-self: center;
     }
 
-    #product-des .sub-title{
-      text-transform:uppercase;
+    #product-des .sub-title {
+      text-transform: uppercase;
       font-family: Montserrat;
       color: var(--dark-grayish-blue);
       font-size: 11px;
@@ -87,14 +101,14 @@
       letter-spacing: 0.3em;
     }
 
-    #product-des .Perfume-name{
+    #product-des .Perfume-name {
       font-family: Fraunces;
       font-size: 2em;
       line-height: 1em;
-      padding: 0.5em 0 0.5em 0;
+      padding: 0.5em 0;
     }
 
-    #product-des .perfume-info{
+    #product-des .perfume-info {
       font-family: Montserrat;
       font-size: 14px;
       color: var(--dark-grayish-blue);
@@ -102,20 +116,20 @@
       padding-bottom: 1em;
     }
 
-    #product-des section{
+    #product-des section {
       display: flex;
-      place-items: center;
+      align-items: center;
       margin-bottom: 1em;
     }
 
-    #product-des section .dis-price{
+    #product-des section .dis-price {
       font-family: Fraunces;
       font-size: 1.5em;
       font-weight: 700;
       color: var(--dark-cyan);
     }
 
-    #product-des section .org-price{
+    #product-des section .org-price {
       font-family: Montserrat;
       font-size: 11px;
       font-weight: 500;
@@ -124,10 +138,10 @@
       text-decoration: line-through;
     }
 
-    #product-des button{
+    #product-des button {
       width: 100%;
       border: none;
-      padding: 10px 20px 10px 20px;
+      padding: 10px 20px;
       background-color: var(--dark-cyan);
       color: var(--white);
       font-family: Montserrat;
@@ -136,21 +150,43 @@
       cursor: pointer;
     }
 
-    
-    #product-des button:hover{
+    #product-des button:hover {
       background-color: var(--dark-cyan1);
     }
 
-    #product-des button i{
+    #product-des button i {
       margin-right: 1em;
     }
 
-    #holder{
-      display: flex;
-      height: 60vh;
+    /* Media Query for Mobile Devices */
+    @media (max-width: 720px) {
+      #main-container{
+        height: 90%;
+      }
+
+      #product-img img{
+        border-radius: 10px 10px 0 0;
+      }
+
+      #product-des{
+        border-radius: 0 0 10px 10px;
+      }
+
+      #holder {
+        flex-direction: column; /* Stack items vertically */
+        height: auto;
+        width: 90%;
+        margin: 2em 0 2em 0;/* Allow the height to adjust based on content */
+      }
+      
+      #product-img {
+        height: auto; /* Allow the image to adjust based on content */
+      }
+
+      #product-des {
+        height: auto; /* Allow the description to adjust based on content */
+      }
     }
-    
-    
   </style>
 </head>
 <body>
@@ -158,21 +194,21 @@
   <div id="main-container">
     <div id="container">
       <div id="holder">
-      <div id="product-img">
-        <img src="./images/image-product-desktop.jpg" alt="Product Image"/>
+        <div id="product-img">
+          <img src="./images/image-product-desktop.jpg" alt="Product Image"/>
+        </div>
+        <div id="product-des">
+          <p class="sub-title">Perfume</p>
+          <h1 class="Perfume-name">Gabrielle Essence Eau De Parfum</h1>
+          <p class="perfume-info">A floral, solar and voluptuous interpretation composed by Olivier Polge, 
+            Perfumer-Creator for the House of CHANEL.</p>
+          <section>
+            <p class="dis-price">$149.99</p>
+            <p class="org-price">$169.99</p>
+          </section>
+          <button><i class="fa fa-cart-plus" aria-hidden="true"></i>Add to Cart</button>
+        </div>
       </div>
-      <div id="product-des">
-        <p class="sub-title">Perfume</p>
-        <h1 class="Perfume-name">Gabrielle Essence Eau De Parfum</h1>
-        <p class="perfume-info">A floral, solar and voluptuous interpretation composed by Olivier Polge, 
-          Perfumer-Creator for the House of CHANEL.</p>
-        <section>
-        <p class="dis-price">$149.99</p>
-        <p class="org-price">$169.99</p>
-        </section>
-        <button><i class="fa fa-cart-plus" aria-hidden="true"></i>Add to Cart</button>
-      </div>
-    </div>
     </div>
   </div>
 
