@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
+  integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" 
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
   
   <title>Frontend Mentor | Product preview card component</title>
 
@@ -17,6 +21,7 @@
     /* Primary */
     :root{
       --dark-cyan: hsl(158, 36%, 37%);
+      --dark-cyan1: hsl(158, 36%, 37%,0.9);
       --cream: hsl(30, 38%, 92%);
     }
 
@@ -38,26 +43,39 @@
       src: url(./fonts/Fraunces/Fraunces-VariableFont_SOFT\,WONK\,opsz\,wght.ttf);
     }
 
+    body{
+      background-color: var(--cream);
+    }
+
     #main-container{
       display: flex;
       justify-content: center;
       align-items: center;
+      place-items: center;
       flex-direction: row;
-      
     }
 
     #container{
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       width: 480px;
-      height: 600px;
-      gap: 20px;
+      height: 100vh;
     }
 
     #product-img img{
       width: 220px;
+      height: 100%;
+      border-radius: 10px 0 0 10px;
+    }
+
+    #product-des{
+      background-color: var(--white);
+      height: 100%;
+      margin-top: auto;
+      margin-bottom: auto;
+      align-self: center;
     }
 
     #product-des .sub-title{
@@ -115,6 +133,21 @@
       font-family: Montserrat;
       font-weight: 500;
       border-radius: 5px;
+      cursor: pointer;
+    }
+
+    
+    #product-des button:hover{
+      background-color: var(--dark-cyan1);
+    }
+
+    #product-des button i{
+      margin-right: 1em;
+    }
+
+    #holder{
+      display: flex;
+      height: 60vh;
     }
     
     
@@ -124,6 +157,7 @@
 
   <div id="main-container">
     <div id="container">
+      <div id="holder">
       <div id="product-img">
         <img src="./images/image-product-desktop.jpg" alt="Product Image"/>
       </div>
@@ -136,8 +170,9 @@
         <p class="dis-price">$149.99</p>
         <p class="org-price">$169.99</p>
         </section>
-        <button>Add to Cart</button>
+        <button><i class="fa fa-cart-plus" aria-hidden="true"></i>Add to Cart</button>
       </div>
+    </div>
     </div>
   </div>
 
